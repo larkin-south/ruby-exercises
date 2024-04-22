@@ -47,9 +47,7 @@ def count_empty_seats(chart)
   # take a chart and return the number of empty (nil) seats in it
 
   # NOTE: `chart` should **not** be mutated
-  chart.reduce(0) do |acc, item|
-    item.each { |value| value.nil? ? acc += 1 : acc }
-  end
+  chart.flatten.reduce(0) { |acc, item| item.nil? ? acc += 1 : acc }
 end
 
 def find_favorite(array_of_hash_objects)
@@ -66,4 +64,7 @@ def find_favorite(array_of_hash_objects)
 
   # TIP: there will only be a maximum of one hash in the array that will
   # return true to the :is_my_favorite? key
+  # array_of_hash_objects.select { |key| key[:is_my_favorite?] == true ? key : nil }
+  array_of_hash_objects.find { |key| key[:is_my_favorite?] == true }
+  # array_of_hash_objects.select { |key, value| key[:]}
 end
